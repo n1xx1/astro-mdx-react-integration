@@ -1,0 +1,36 @@
+---
+import type { GetStaticPathsResult } from "astro";
+import { Page } from "../components/page";
+import { fileURLToPath } from "url";
+import { resolve } from "path";
+
+interface Frontmatter {
+  title: string;
+  name: string | null;
+  type: string | null;
+  level: number | null;
+}
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  const base = resolve("./src/content").replaceAll("\\", "/");
+  const pages = await Astro.glob<Frontmatter>("@content/**/*.mdx");
+  return pages.map((p) => {
+    let file = p.file;
+    if (file.startsWith(base)) {
+      file = file.substring(base.length + 1);
+    }
+    let slug: string | undefined = file.replace(/((^|\/)_index)?\.mdx?$/, "");
+    if (slug.length == 0) {
+      slug = undefined;
+    }
+    return {
+      params: { slug },
+      props: {
+        file,
+        frontmatter: p.frontmatter,
+      },
+    };
+  });
+}
+---
+
+<Page path={Astro.props.file} />
