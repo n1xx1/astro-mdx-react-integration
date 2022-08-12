@@ -22,7 +22,7 @@ export default defineConfig({
         transform(code, id) {
           if (!id.endsWith(".mdx")) return;
           code = code.replace(/"astro\/jsx-runtime"/g, `"react/jsx-runtime"`);
-          // console.log(code);
+          console.log(code);
           return code;
         },
       },
