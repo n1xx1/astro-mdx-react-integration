@@ -4,27 +4,32 @@ specifiers:
   '@astrojs/mdx': ^0.8.2
   '@astrojs/preact': ^1.0.1
   '@astrojs/react': ^1.0.0
+  '@types/github-slugger': ^1.3.0
   '@types/mdx': ^2.0.2
   '@types/node': ^18.7.1
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
   astro: ^1.0.2
+  fast-deep-equal: ^3.1.3
   preact: ^10.10.2
   prettier: ^2.7.1
   prettier-plugin-astro: ^0.5.0
   react: ^18.2.0
   react-dom: ^18.2.0
+  unist-util-visit-parents: ^5.1.0
   vite: ^3.0.5
 
 dependencies:
   '@astrojs/mdx': 0.8.2
   '@astrojs/preact': 1.0.1_preact@10.10.2
   '@astrojs/react': 1.0.0_biqbaboplfbrettd7655fr4n2y
+  fast-deep-equal: 3.1.3
   preact: 10.10.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
 devDependencies:
+  '@types/github-slugger': 1.3.0
   '@types/mdx': 2.0.2
   '@types/node': 18.7.1
   '@types/react': 18.0.17
@@ -32,6 +37,7 @@ devDependencies:
   astro: 1.0.2
   prettier: 2.7.1
   prettier-plugin-astro: 0.5.0
+  unist-util-visit-parents: 5.1.0
   vite: 3.0.5
 
 packages:
@@ -574,6 +580,10 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
+
+  /@types/github-slugger/1.3.0:
+    resolution: {integrity: sha512-J/rMZa7RqiH/rT29TEVZO4nBoDP9XJOjnbbIofg7GQKs4JIduEO3WLpte+6WeUz/TcrXKlY+bM7FYrp8yFB+3g==}
+    dev: true
 
   /@types/hast/2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
@@ -1367,6 +1377,10 @@ packages:
 
   /extend/3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
+
+  /fast-deep-equal/3.1.3:
+    resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
+    dev: false
 
   /fast-glob/3.2.11:
     resolution: {integrity: sha512-xrO3+1bxSo3ZVHAnqzyuewYT6aMFHRAd4Kcs92MAonjwQZLsK9d0SF1IyQ3k5PoirxTW0Oe/RqFgMQ6TcNE5Ew==}

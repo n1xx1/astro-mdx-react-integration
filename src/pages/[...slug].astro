@@ -1,7 +1,6 @@
 ---
 import type { GetStaticPathsResult } from "astro";
 import { Page } from "../components/page";
-import { fileURLToPath } from "url";
 import { resolve } from "path";
 
 interface Frontmatter {
@@ -13,6 +12,7 @@ interface Frontmatter {
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const base = resolve("./src/content").replaceAll("\\", "/");
   const pages = await Astro.glob<Frontmatter>("@content/**/*.mdx");
+
   return pages.map((p) => {
     let file = p.file;
     if (file.startsWith(base)) {

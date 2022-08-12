@@ -1,6 +1,12 @@
 import type { MarkdownHeading, MarkdownInstance } from "astro";
 import type { MDXContent } from "mdx/types";
 
+declare module "astro" {
+  interface MarkdownInstance<T extends Record<string, any>> {
+    getHeadingsCustom(): Promise<MarkdownHeading[]>;
+  }
+}
+
 export interface Frontmatter {
   title: string;
   name: string | null;
@@ -12,6 +18,21 @@ export interface PageResult {
   Content: MDXContent;
   frontmatter: Frontmatter;
   getHeadings: () => Promise<MarkdownHeading[]>;
+}
+
+export function transformPage(
+  importedPage: MarkdownInstance<Frontmatter>
+): PageResult {
+  const {
+    default: defaultExport,
+    frontmatter,
+    getHeadingsCustom,
+  } = importedPage;
+  return {
+    Content: defaultExport as any as MDXContent,
+    frontmatter,
+    getHeadings: getHeadingsCustom,
+  };
 }
 
 export async function getPage(file: string): Promise<PageResult | null> {
@@ -26,10 +47,5 @@ export async function getPage(file: string): Promise<PageResult | null> {
     return null;
   }
 
-  const { default: defaultExport, frontmatter, getHeadings } = await page();
-  return {
-    Content: defaultExport as any as MDXContent,
-    frontmatter,
-    getHeadings,
-  };
+  return transformPage(await page());
 }

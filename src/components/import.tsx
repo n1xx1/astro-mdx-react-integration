@@ -1,15 +1,17 @@
+import type { MarkdownInstance } from "astro";
 import { createContext, useContext } from "react";
-import type { Frontmatter } from "src/page";
+import { usePromise } from "src/lib/use-promise";
+import { Frontmatter, transformPage } from "../page";
 import { components } from "./all";
-import { usePage } from "./use-page";
 
 interface ImportProps {
+  promise?: Promise<MarkdownInstance<any>>;
   path: string;
 }
 
-export function Import({ path }: ImportProps) {
+export function Import({ path, promise }: ImportProps) {
   const ctx = useContext(ImportContext);
-  const page = usePage(path + ".mdx");
+  const page = usePromise(async () => transformPage(await promise!), [path]);
   if (!page) {
     return <>Not Found!</>;
   }
